@@ -14,6 +14,21 @@
       "title": "Third Time is the Charm",
       "text": "Test text 3",
       "id": "2"
+    },
+    {
+      "title": "HELLO SLEEP",
+      "text": "I've been looking for you. \nIt took me building all this app but I finally found you. \nYou rock. \n",
+      "id": "3"
+    },
+    {
+      "title": "Hello? Where am I?",
+      "text": "I'm typing this note, but I don't know how to display it back.",
+      "id": "4"
+    },
+    {
+      "title": "Hope to be the last",
+      "text": "Almost there, heeeeelp",
+      "id": "5"
     }
   ]
 }

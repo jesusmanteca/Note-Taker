@@ -9,9 +9,11 @@ const PORT = process.env.PORT || 3002;
 //instantiates the server so that we can later chain on methods to the Express.js server
 const app = express();
 // parse incoming string or array data
+
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+// middleware that instructs the server to make certain files readily available and to not gate it behind a server endpoint
 app.use(express.static('public'));
 
 // function to search by id
@@ -44,9 +46,9 @@ function validateNote(note) {
 // add the GET routes
 // lets you see notes json
 app.get('/api/notes', (req, res) => {
-    // res.send('<h1>Hello!</h1>');
-    let notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    res.json(notes);
+    // let notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let results = notes;
+    res.json(results);
 });
 //lets you search notes by id
 app.get('/api/notes/:id', (req, res) => {
@@ -58,6 +60,13 @@ app.get('/api/notes/:id', (req, res) => {
     }
   });
 
+// GET ROUTES AND READ HTML
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+  });
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+  });
 
 // add POST routes
 app.post('/api/notes', (req, res) => {
@@ -70,10 +79,6 @@ app.post('/api/notes', (req, res) => {
         res.json(note);
     }
 });
-
-
-
-
 
 
 // method to make our server listen
