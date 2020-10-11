@@ -12,9 +12,14 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+app.use(express.static('public'));
 
-
-
+// add the GET routes
+app.get('/api/notes', (req, res) => {
+    // res.send('<h1>Hello!</h1>');
+    let notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    res.json(notes);
+});
 
 
 // method to make our server listen
